@@ -18,7 +18,7 @@ public class ModConfig extends Config {
             description = "Render the doll",
             size = OptionSize.DUAL
     )
-    public static boolean enabled = false;
+    public static boolean dollEnabled = false;
 
     @Dropdown(
             name = "Side",
@@ -32,17 +32,24 @@ public class ModConfig extends Config {
             description = "The space between the doll and the side border",
             min = 0, max = 200
     )
-    public static int horizontalMargin = 26;
+    public static int horizontalMargin = 22;
     @Slider(
             name = "Y Offset",
             description = "The space between the doll and the top border",
             min = 0, max = 200
     )
-    public static int verticalMargin = 60;
+    public static int verticalMargin = 11;
     @Slider(
             name = "Scale",
             description = "The scale of the doll",
             min = 10, max = 180
     )
     public static int scale = 30;
+
+    @Slider(
+            name = "Width Multiplier",
+            description = "Adjust visual width calculation (for right-side positioning)",
+            min = 10, max = 30
+    )
+    public static int widthMultiplier = 15;  // 15 = 1.5x
 }

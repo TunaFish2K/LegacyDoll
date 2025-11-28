@@ -31,7 +31,7 @@ public class LegacyDollMod {
             return;
         }
 
-        if (!ModConfig.enabled) {
+        if (!ModConfig.dollEnabled) {
             return;
         }
 
@@ -53,14 +53,40 @@ public class LegacyDollMod {
 
         int scale = ModConfig.scale;
 
-        // a rough calculation, may require further optimization
-        int modelWidth = (int)(scale * 1.5);
+        // Get player dimensions dynamically
+        float playerHeight = player.height;  // ~1.8 blocks
+        float playerWidth = player.width;    // ~0.6 blocks
 
-        int posX = ModConfig.side == 0 ? ModConfig.horizontalMargin : screenWidth - ModConfig.horizontalMargin - modelWidth;
-        int posY = ModConfig.verticalMargin;
+        // Calculate model dimensions after scaling
+        int modelHeight = (int)(scale * playerHeight);
+
+        // Calculate model width after scaling
+        // The visual width includes arms spread out and rotation effects
+        // Use configurable multiplier (widthMultiplier / 10.0) for fine-tuning
+        float visualWidth = playerWidth * (ModConfig.widthMultiplier / 10.0F);
+        int modelWidth = (int)(scale * visualWidth);
+
+        // Calculate anchor point for scaling
+        // Left side (0): anchor at left margin, model expands right-down
+        // Right side (1): anchor at right margin, model expands left-down
+        //   For right side, need to offset left by modelWidth so right edge stays at margin
+        int posX = ModConfig.side == 0
+            ? ModConfig.horizontalMargin
+            : screenWidth - ModConfig.horizontalMargin - modelWidth;
+
+        // For vertical: anchor at top margin, model expands downward
+        // After all transformations (rotate + translate in model space + scale),
+        // the head ends up at: posY - 2*modelHeight
+        // the feet ends up at: posY - modelHeight
+        // To keep head at verticalMargin: verticalMargin = posY - 2*modelHeight
+        // Therefore: posY = verticalMargin + 2*modelHeight
+        int posY = ModConfig.verticalMargin + 2 * modelHeight;
 
         GlStateManager.translate(posX, posY, 50.0F);
         GlStateManager.scale(-scale, scale, scale);
+        // Offset in model space to make top of head the anchor point instead of feet
+        // Use actual player height so top stays at verticalMargin
+        GlStateManager.translate(0, -playerHeight, 0);
         GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
 
         // save original rotations

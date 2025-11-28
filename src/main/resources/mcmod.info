@@ -2,7 +2,7 @@
   {
     "modid": "${modid}",
     "name": "LegacyDoll",
-    "description": "Add paper doll to Minecraft 1.8.9.",
+    "description": "Added paper doll to Minecraft 1.8.9.",
     "version": "${version}",
     "mcversion": "${mcversion}",
     "url": "https://github.com/tunafish2k/LegacyDoll",
