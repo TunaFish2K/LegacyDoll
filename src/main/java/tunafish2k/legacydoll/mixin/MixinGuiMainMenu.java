@@ -1,4 +1,4 @@
-package com.github.tunafish2k.legacydoll.mixin;
+package tunafish2k.legacydoll.mixin;
 
 import net.minecraft.client.gui.GuiMainMenu;
 import org.spongepowered.asm.mixin.Mixin;

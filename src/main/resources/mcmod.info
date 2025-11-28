@@ -1,14 +1,14 @@
 [
   {
     "modid": "${modid}",
-    "name": "Xample Mod",
-    "description": "A mod that is used as an example.",
+    "name": "LegacyDoll",
+    "description": "Add paper doll to Minecraft 1.8.9.",
     "version": "${version}",
     "mcversion": "${mcversion}",
-    "url": "https://github.com/romangraef/Forge1.8.9Template/",
+    "url": "https://github.com/tunafish2k/LegacyDoll",
     "updateUrl": "",
     "authorList": [
-      "You"
+      "TunaFish2K"
     ],
     "credits": "",
     "logoFile": "",

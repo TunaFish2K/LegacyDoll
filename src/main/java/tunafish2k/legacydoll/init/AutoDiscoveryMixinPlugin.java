@@ -1,4 +1,4 @@
-package com.github.tunafish2k.legacydoll.init;
+package tunafish2k.legacydoll.init;
 
 import org.spongepowered.asm.lib.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
